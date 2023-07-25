@@ -1,0 +1,15 @@
+.productpagination {
+    margin-top: 40px;
+    position: absolute;
+    right: 0;
+  }
+
+.productWrapContainer {
+    margin-top: 30px;
+    display: grid;
+    grid-column: 1fr 1fr;
+}
+
+.emptyResults {
+    height: 100vh;
+}

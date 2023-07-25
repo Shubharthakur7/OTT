@@ -1,0 +1,11 @@
+.product{
+    margin-bottom: 20px;
+}
+
+img {
+    aspect-ratio: 2/3;
+}
+
+.highlighted-text {
+    color: yellow;
+}

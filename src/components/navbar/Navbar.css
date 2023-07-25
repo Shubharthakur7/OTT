@@ -1,0 +1,30 @@
+svg {
+    color: #fff;
+    font-size: 30px;
+}
+
+.navbar {
+    position: sticky !important;
+    top: 0 !important;
+    background-color: #171717;
+    box-shadow: 0 17px 0 rgb(20, 17, 17);
+}
+
+.iconGroup {
+    background-color: #171717;
+    padding-top: 20px;
+  }
+  
+  .right-icon {
+    /* padding-right: 20px; */
+    float: right;
+  }
+
+  .left-icon {
+    display: flex;
+  }
+
+  .homeHeaderTitle {
+    font-size: 20px;
+  }
+  
