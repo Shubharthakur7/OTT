@@ -5,10 +5,10 @@ import {
   Col
 } from 'react-bootstrap';
 import Navbar from '../navbar/Navbar';
+import { camelizeKeys } from '../../hooks/hooks';
 import Product from './Product';
 import axios from 'axios';
 import './home.css';
-import { camelCase } from 'lodash';
 
 /**For Normal Pagination */
 // import PaginationComponent from '../pagination/pagination';
@@ -22,22 +22,6 @@ const HomePage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [reachedBottom, setReachedBottom] = useState(false);
   const [q, setQ] = useState('');
-
-  /**Cmaelize key valye of array and objects */
-  const camelizeKeys = (obj) => {
-    if (Array.isArray(obj)) {
-      return obj.map(v => camelizeKeys(v));
-    } if (obj !== null && obj.constructor === Object) {
-      return Object.keys(obj).reduce(
-        (result, key) => ({
-          ...result,
-          [camelCase(key)]: camelizeKeys(obj[key]),
-        }),
-        {},
-      );
-    }
-    return obj;
-  }
 
   //If we need custom pagination
 
