@@ -9,3 +9,7 @@ img {
 .highlighted-text {
     color: yellow;
 }
+
+.productTtitle {
+    font-size: 18px;
+}

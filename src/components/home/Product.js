@@ -9,7 +9,7 @@ const Product = ({ imageUrl, title, search }) => {
             const firstHalf = title.slice(0, index);
             const secondHalf = title.slice(index + searchTerm.length);
             return (
-                <div>
+                <div className='productTtitle'>
                     {firstHalf}
                     <span className="highlighted-text">{title.substr(index, searchTerm.length)}</span>
                     {secondHalf}
@@ -27,7 +27,7 @@ const Product = ({ imageUrl, title, search }) => {
                     const eventTarget = event.target;
                     eventTarget.src = 'https://test.create.diagnal.com/images/placeholder_for_missing_posters.png';
                 }} />
-                <div className=''>{search.length !== 0 ? highLightedTitle(title, search) : title}</div>
+                <div>{search.length !== 0 ? highLightedTitle(title, search) : <div className='productTtitle'>{title}</div> }</div>
             </div>
         </div>
     )
