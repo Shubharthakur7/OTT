@@ -40,7 +40,7 @@ const HomePage = () => {
   }
 
   //If we need custom pagination
-  
+
   // const paginationPageButtonOnClick = (pageNumber) => {
   //   const queryParams = {};
   //   if (q) {
@@ -157,7 +157,7 @@ const HomePage = () => {
       <div className="productWrapContainer " >
         <Row>
           {data.length > 0 ? data.map((item) => (
-            <Col lg={4} md={4} sm={4} className='productList'>
+            <Col lg={3} md={4} sm={4} className='productList'>
               <Product imageUrl={item?.posterImage} title={item.name} search={q} />
             </Col>
           )): <h2 className="emptyResults">No Results found! Please use different keyword to search</h2>
