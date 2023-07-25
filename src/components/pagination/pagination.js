@@ -1,3 +1,4 @@
+/**Imports modules and components */
 import React, { useEffect } from 'react';
 import Pagination from 'react-bootstrap/Pagination';
 import PropTypes from 'prop-types';
@@ -9,6 +10,7 @@ const PaginationComponent = ({
   currentPage,
   pageButtonOnClick
 }) => {
+    // Round page count
   const pagesCount = Math.ceil(itemsCount / itemsPerPage);
 
   const changePage = (nextPage) => {

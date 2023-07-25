@@ -2,14 +2,12 @@ import React from 'react';
 import './Product.css';
 
 const Product = ({ imageUrl, title, search }) => {
-
+    /**Highlight search result titles */
     const highLightedTitle = (title, searchTerm) => {
         const index = title.toLowerCase().indexOf(searchTerm.toLowerCase());
-
         if (index !== -1 && searchTerm.length > 0) {
             const firstHalf = title.slice(0, index);
             const secondHalf = title.slice(index + searchTerm.length);
-
             return (
                 <div>
                     {firstHalf}
@@ -29,7 +27,7 @@ const Product = ({ imageUrl, title, search }) => {
                     const eventTarget = event.target;
                     eventTarget.src = 'https://test.create.diagnal.com/images/placeholder_for_missing_posters.png';
                 }} />
-                <div className=''>{search ? highLightedTitle(title, search) : title}</div>
+                <div className=''>{search.length !== 0 ? highLightedTitle(title, search) : title}</div>
             </div>
         </div>
     )

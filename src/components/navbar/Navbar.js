@@ -6,14 +6,15 @@ const Navbar = ({handleChange}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [q, setQ] = useState('');
 
+/**handle search input tag */
   const handleModal = () => {
     setIsOpen(!isOpen);
   }
 
+/** get seach term and update the props to update list data*/
 const handleSearchTextChange = (e) => {
   handleChange(e.target.value);
     setQ(e.target.value);
-    console.log(e.target.value)
 }
 
   return (

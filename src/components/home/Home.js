@@ -1,3 +1,4 @@
+/**Imports modules and components */
 import React, { useEffect, useState, useMemo } from 'react';
 import {
   Row,
@@ -6,18 +7,23 @@ import {
 import Navbar from '../navbar/Navbar';
 import Product from './Product';
 import axios from 'axios';
-// import PaginationComponent from '../pagination/pagination';
-// import { useUrlState } from '../../hooks/hooks';
 import './home.css';
 import { camelCase } from 'lodash';
 
+/**For Normal Pagination */
+// import PaginationComponent from '../pagination/pagination';
+// import { useUrlState } from '../../hooks/hooks';
+
 const HomePage = () => {
+
+  /**Handle statemanagements */
   const [data, setData] = useState([]);
   const [pageNumber, setPageNumber] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [reachedBottom, setReachedBottom] = useState(false);
   const [q, setQ] = useState('');
 
+  /**Cmaelize key valye of array and objects */
   const camelizeKeys = (obj) => {
     if (Array.isArray(obj)) {
       return obj.map(v => camelizeKeys(v));
@@ -33,7 +39,8 @@ const HomePage = () => {
     return obj;
   }
 
-  //If we need pagination
+  //If we need custom pagination
+  
   // const paginationPageButtonOnClick = (pageNumber) => {
   //   const queryParams = {};
   //   if (q) {
@@ -44,7 +51,6 @@ const HomePage = () => {
   //     pathname: location.pathname,
   //     search: '?' + new URLSearchParams(queryParams).toString()
   //   })
-
   // }
 
   // if we need pagination we can use below code
@@ -52,13 +58,36 @@ const HomePage = () => {
   //   fetchData(page || '1'); // Call the API function
   // }, [page]);
 
+    // const paginationComponents = () => {
+    // {data.length > 0 && <Row className="productpagination">
+    //   <PaginationComponent
+    //     itemsCount={data?.length * 3}
+    //     itemsPerPage={data?.length}
+    //     currentPage={currentPage}
+    //     pageButtonOnClick={paginationPageButtonOnClick}
+    //   />
+    // </Row>}
+  // }
+
+  /**
+   * 
+   * @param {handle search results }
+   * @returns 
+   * @author Shubham Singh
+   */
+
   const handleChange = (s) => {
-    if(s.length === 0) return initialRendering(0);
+    if(s.length === 0) { 
+      initialRendering(0);
+      setQ('');
+      return undefined;
+    };
     s = s.toLowerCase();
     setData(data.filter(movie => movie.name.toLowerCase().includes(s)));
     setQ(s);
   }
 
+  /**handle memoized API call */
   const memoizedFetchData = useMemo(() => async (p) => {
     if (p <= 3) {
       const response = await axios.get(`https://test.create.diagnal.com/data/page${p}.json`);
@@ -67,6 +96,7 @@ const HomePage = () => {
     }
   }, []);
 
+  /**API call after scroll */
 
   const loadMoreData = async (p) => {
     if (!isLoading && p <= 3 && p > 1) {
@@ -77,6 +107,7 @@ const HomePage = () => {
     }
   };
 
+  /** Initial page render */
   const initialRendering = async (p) => {
     const newData = await memoizedFetchData(1);
     setData(newData);
@@ -86,6 +117,8 @@ const HomePage = () => {
     initialRendering(1);
   }, []);
 
+
+  /** handle scroll and call the API when its reached on the bottom */
   useEffect(() => {
     const handleScroll = () => {
       if (
@@ -107,6 +140,9 @@ const HomePage = () => {
     };
   }, [isLoading, reachedBottom]);
 
+
+  /** Adding flag to check scroll reached to bottom and call the API */
+
   useEffect(() => {
     if (reachedBottom) {
       loadMoreData(pageNumber).then(() => {
@@ -114,8 +150,6 @@ const HomePage = () => {
       });
     }
   }, [reachedBottom, pageNumber]);
-
-
 
   return (
     <div className='container'>
@@ -131,16 +165,6 @@ const HomePage = () => {
         </Row>
       </div>
     </div>
-    //below code is for paginations
-
-    // {data.length > 0 && <Row className="productpagination">
-    //   <PaginationComponent
-    //     itemsCount={data?.length * 3}
-    //     itemsPerPage={data?.length}
-    //     currentPage={currentPage}
-    //     pageButtonOnClick={paginationPageButtonOnClick}
-    //   />
-    // </Row>}
   );
 };
 
