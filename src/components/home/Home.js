@@ -10,7 +10,7 @@ import Product from './Product';
 import axios from 'axios';
 import './home.css';
 
-/**For Normal Pagination */
+/**For custom Pagination */
 // import PaginationComponent from '../pagination/pagination';
 // import { useUrlState } from '../../hooks/hooks';
 
@@ -22,6 +22,7 @@ const HomePage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [reachedBottom, setReachedBottom] = useState(false);
   const [q, setQ] = useState('');
+  const [hideSearchOption, setHideSearchOption] = useState(false);
 
   //If we need custom pagination
 
@@ -42,16 +43,25 @@ const HomePage = () => {
   //   fetchData(page || '1'); // Call the API function
   // }, [page]);
 
-    // const paginationComponents = () => {
-    // {data.length > 0 && <Row className="productpagination">
-    //   <PaginationComponent
-    //     itemsCount={data?.length * 3}
-    //     itemsPerPage={data?.length}
-    //     currentPage={currentPage}
-    //     pageButtonOnClick={paginationPageButtonOnClick}
-    //   />
-    // </Row>}
+  // const paginationComponents = () => {
+  // {data.length > 0 && <Row className="productpagination">
+  //   <PaginationComponent
+  //     itemsCount={data?.length * 3}
+  //     itemsPerPage={data?.length}
+  //     currentPage={currentPage}
+  //     pageButtonOnClick={paginationPageButtonOnClick}
+  //   />
+  // </Row>}
   // }
+
+  /** handle cance button click and hide search option */
+
+  const handleCancelClick = () => {
+    setHideSearchOption(true);
+    initialRendering(1);
+    setQ('');
+    return undefined;
+  }
 
   /**
    * 
@@ -61,8 +71,8 @@ const HomePage = () => {
    */
 
   const handleChange = (s) => {
-    if(s.length === 0) { 
-      initialRendering(0);
+    if (s.length === 0) {
+      initialRendering(1);
       setQ('');
       return undefined;
     };
@@ -137,15 +147,15 @@ const HomePage = () => {
 
   return (
     <div className='container'>
-      <Navbar handleChange={handleChange} />
+      <Navbar handleChange={handleChange} handleCancelClick={handleCancelClick} hideSearchOption={hideSearchOption} />
       <div className="productWrapContainer " >
         <Row>
           {data.length > 0 ? data.map((item) => (
             <Col lg={3} md={4} sm={4} className='productList'>
               <Product imageUrl={item?.posterImage} title={item.name} search={q} />
             </Col>
-          )): <h2 className="emptyResults">No Results found! Please use different keyword to search</h2>
-        }
+          )) : <h2 className="emptyResults">No Results found! Please use different keyword to search</h2>
+          }
         </Row>
       </div>
     </div>
