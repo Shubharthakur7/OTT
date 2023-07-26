@@ -10,10 +10,6 @@ import Product from './Product';
 import axios from 'axios';
 import './home.css';
 
-/**For custom Pagination */
-// import PaginationComponent from '../pagination/pagination';
-// import { useUrlState } from '../../hooks/hooks';
-
 const HomePage = () => {
 
   /**Handle statemanagements */
@@ -23,36 +19,6 @@ const HomePage = () => {
   const [reachedBottom, setReachedBottom] = useState(false);
   const [q, setQ] = useState('');
   const [hideSearchOption, setHideSearchOption] = useState(false);
-
-  //If we need custom pagination
-
-  // const paginationPageButtonOnClick = (pageNumber) => {
-  //   const queryParams = {};
-  //   if (q) {
-  //     queryParams.q = q
-  //   };
-  //   queryParams.page = pageNumber.toString();
-  //   navigate({
-  //     pathname: location.pathname,
-  //     search: '?' + new URLSearchParams(queryParams).toString()
-  //   })
-  // }
-
-  // if we need pagination we can use below code
-  // useEffect(() => {
-  //   fetchData(page || '1'); // Call the API function
-  // }, [page]);
-
-  // const paginationComponents = () => {
-  // {data.length > 0 && <Row className="productpagination">
-  //   <PaginationComponent
-  //     itemsCount={data?.length * 3}
-  //     itemsPerPage={data?.length}
-  //     currentPage={currentPage}
-  //     pageButtonOnClick={paginationPageButtonOnClick}
-  //   />
-  // </Row>}
-  // }
 
   /** handle cance button click and hide search option */
 
@@ -163,3 +129,36 @@ const HomePage = () => {
 };
 
 export default HomePage;
+
+/**For custom Pagination */
+// import PaginationComponent from '../pagination/pagination';
+// import { useUrlState } from '../../hooks/hooks';
+//If we need custom pagination
+
+// const paginationPageButtonOnClick = (pageNumber) => {
+//   const queryParams = {};
+//   if (q) {
+//     queryParams.q = q
+//   };
+//   queryParams.page = pageNumber.toString();
+//   navigate({
+//     pathname: location.pathname,
+//     search: '?' + new URLSearchParams(queryParams).toString()
+//   })
+// }
+
+// if we need pagination we can use below code
+// useEffect(() => {
+//   fetchData(page || '1'); // Call the API function
+// }, [page]);
+
+// const paginationComponents = () => {
+// {data.length > 0 && <Row className="productpagination">
+//   <PaginationComponent
+//     itemsCount={data?.length * 3}
+//     itemsPerPage={data?.length}
+//     currentPage={currentPage}
+//     pageButtonOnClick={paginationPageButtonOnClick}
+//   />
+// </Row>}
+// }
