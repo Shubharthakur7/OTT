@@ -129,36 +129,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-
-/**For custom Pagination */
-// import PaginationComponent from '../pagination/pagination';
-// import { useUrlState } from '../../hooks/hooks';
-//If we need custom pagination
-
-// const paginationPageButtonOnClick = (pageNumber) => {
-//   const queryParams = {};
-//   if (q) {
-//     queryParams.q = q
-//   };
-//   queryParams.page = pageNumber.toString();
-//   navigate({
-//     pathname: location.pathname,
-//     search: '?' + new URLSearchParams(queryParams).toString()
-//   })
-// }
-
-// if we need pagination we can use below code
-// useEffect(() => {
-//   fetchData(page || '1'); // Call the API function
-// }, [page]);
-
-// const paginationComponents = () => {
-// {data.length > 0 && <Row className="productpagination">
-//   <PaginationComponent
-//     itemsCount={data?.length * 3}
-//     itemsPerPage={data?.length}
-//     currentPage={currentPage}
-//     pageButtonOnClick={paginationPageButtonOnClick}
-//   />
-// </Row>}
-// }
