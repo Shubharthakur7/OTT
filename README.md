@@ -2,6 +2,8 @@
 
 Welcome to the ....
 https://diagnal-workshop-test.vercel.app/
+https://glittery-florentine-0c7b3e.netlify.app
+
 
 ## Installation
 
